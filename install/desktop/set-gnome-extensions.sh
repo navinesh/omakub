@@ -16,23 +16,15 @@ gext install just-perfection-desktop@just-perfection
 gext install blur-my-shell@aunetx
 gext install space-bar@luchrioh
 gext install undecorate@sun.wxg@gmail.com
-gext install Vitals@CoreCoding.com
+gext install tophat@fflewddur.github.io
 gext install AlphabeticalAppGrid@stuarthayhurst
-
-# Manually install Pano (until released version is Gnome 46 compatible)
-wget -O /tmp/pano.zip https://github.com/oae/gnome-shell-pano/releases/download/v23-alpha2/pano@elhan.io.zip
-mkdir -p ~/.local/share/gnome-shell/extensions/
-unzip /tmp/pano.zip -d ~/.local/share/gnome-shell/extensions/pano@elhan.io
-rm /tmp/pano.zip
-sudo apt install -y gir1.2-gda-5.0 gir1.2-gsound-1.0
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/pano\@elhan.io/schemas/org.gnome.shell.extensions.pano.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/Vitals\@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -56,9 +48,7 @@ gsettings set org.gnome.shell.extensions.blur-my-shell.appfolder blur false
 gsettings set org.gnome.shell.extensions.blur-my-shell.lockscreen blur false
 gsettings set org.gnome.shell.extensions.blur-my-shell.screenshot blur false
 gsettings set org.gnome.shell.extensions.blur-my-shell.window-list blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.panel brightness 0.6
-gsettings set org.gnome.shell.extensions.blur-my-shell.panel sigma 30
-gsettings set org.gnome.shell.extensions.blur-my-shell.panel pipeline 'pipeline_default'
+gsettings set org.gnome.shell.extensions.blur-my-shell.panel blur false
 gsettings set org.gnome.shell.extensions.blur-my-shell.overview blur true
 gsettings set org.gnome.shell.extensions.blur-my-shell.overview pipeline 'pipeline_default'
 gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock blur true
@@ -73,18 +63,12 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-activate-wor
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-workspace-shortcuts true
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
-# Configure Pano
-gsettings set org.gnome.shell.extensions.pano play-audio-on-copy false
-gsettings set org.gnome.shell.extensions.pano send-notification-on-copy false
-gsettings set org.gnome.shell.extensions.pano window-position 2
-gsettings set org.gnome.shell.extensions.pano history-length 30
-gsettings set org.gnome.shell.extensions.pano.text-item body-bg-color 'rgb(153,193,241)'
-
-# Configure Vitals
-gsettings set org.gnome.shell.extensions.vitals hide-icons true
-gsettings set org.gnome.shell.extensions.vitals hot-sensors "['__network-rx_max__']"
-gsettings set org.gnome.shell.extensions.vitals icon-style 0
-gsettings set org.gnome.shell.extensions.vitals network-speed-format 1
+# Configure TopHat
+gsettings set org.gnome.shell.extensions.tophat show-icons false
+gsettings set org.gnome.shell.extensions.tophat show-cpu false
+gsettings set org.gnome.shell.extensions.tophat show-disk false
+gsettings set org.gnome.shell.extensions.tophat show-mem false
+gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
 
 # Configure AlphabeticalAppGrid
 gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
